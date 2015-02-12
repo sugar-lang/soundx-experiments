@@ -1,0 +1,9 @@
+module TestPair1
+
+import PairExtension
+
+point1 = (1,2);
+
+point2 = (2,3);
+
+quxx = bar;

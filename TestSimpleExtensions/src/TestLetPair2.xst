@@ -1,0 +1,11 @@
+module TestLetPair2
+
+import LetPairExtension
+
+test01 =
+  let a = 1 in (a,a);
+
+test02 =
+  let (l,r) = test01;
+      s = r + l
+  in s;

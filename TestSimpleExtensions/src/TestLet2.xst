@@ -1,0 +1,5 @@
+module TestLet2
+
+import LetExtension
+
+test = let a = 1 in a;

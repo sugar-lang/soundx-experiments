@@ -1,0 +1,7 @@
+module TestLet1
+
+import LetExtension  
+
+test01 = let a = 1; b = 2 in a + b;  
+
+test02 = 1 + (let f = \x:Nat.x in f 2); 
