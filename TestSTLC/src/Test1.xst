@@ -1,0 +1,7 @@
+module Test1
+
+x = 7;
+
+id = \n:Nat. n;
+
+foo = x x; 
