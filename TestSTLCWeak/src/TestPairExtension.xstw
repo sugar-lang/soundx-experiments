@@ -1,0 +1,9 @@
+module TestPairExtension
+
+import PairExtension
+
+point = (1,2);
+
+fst = point.1;
+
+snd = point.2;
