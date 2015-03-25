@@ -1,0 +1,5 @@
+module Test5
+
+f1 = \gen0.\gen1.\a:gen0.\b:gen1. b;
+
+f2 = \gen0. (f1 [gen0]);

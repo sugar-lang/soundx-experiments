@@ -1,0 +1,5 @@
+module Test1
+
+id = \X.\x:X. x;
+
+one = id [Nat] 1;

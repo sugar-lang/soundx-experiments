@@ -1,0 +1,5 @@
+module Test2
+
+id = \gen0.\x:gen0. x;
+
+foo = \gen0. (id [gen0]);
