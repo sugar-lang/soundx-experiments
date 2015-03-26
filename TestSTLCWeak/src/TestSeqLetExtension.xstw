@@ -1,0 +1,5 @@
+module TestSeqLetExtension
+
+import SeqLetExtension
+
+foo = let a = 1 in a + 1;

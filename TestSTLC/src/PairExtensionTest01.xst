@@ -1,4 +1,4 @@
-module TestPair1
+module PairExtensionTest01
 
 import PairExtension
 
@@ -6,4 +6,4 @@ point1 = (1,2);
 
 point2 = (2,3);
 
-quxx = bar;
+n = point2.1 + point1.2;

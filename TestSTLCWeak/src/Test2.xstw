@@ -1,0 +1,7 @@
+module Test2
+
+a = 1;
+
+b = 1;
+
+c = \a:Nat->Nat. a b;
