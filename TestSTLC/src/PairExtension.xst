@@ -13,12 +13,12 @@ extension {
     "(" Term "," Term ")" -> Term {cons("Pair")}
 
   context-free priorities
-      Term Term     -> Term >
+      Term Term     -> Term   >
     { Term "." "1"  -> Term
       Term "." "2"  -> Term } >
       Term "+" Term -> Term
 
-inductive definitions
+  inductive definitions
     T-Fst:
       C |- t : Pair T
       ---------------
