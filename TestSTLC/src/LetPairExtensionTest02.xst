@@ -1,4 +1,4 @@
-module TestLetPair2
+module LetPairExtensionTest02
 
 import LetPairExtension
 

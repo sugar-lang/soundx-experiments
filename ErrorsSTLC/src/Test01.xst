@@ -1,4 +1,4 @@
-module Test2
+module Test01
 
 x = 7;
 
@@ -6,4 +6,4 @@ boo = \n:Nat. 1;
 
 id = \n:Nat. n;
 
-//bar = 3 4;
+foo = (1 4) 2; 

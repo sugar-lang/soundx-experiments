@@ -1,11 +1,7 @@
-module Test1
+module Test01
 
 x = 7;
 
 boo = \n:Nat. 1;
 
 id = \n:Nat. n;
-
-foo = (1 4) 2; 
-
-//bar = 3 4;

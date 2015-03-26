@@ -1,4 +1,4 @@
-module TestLet2
+module LetExtensionTest02
 
 import LetExtension
 
