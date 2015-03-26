@@ -1,4 +1,4 @@
-module TestPairExtension
+module PairExtensionTest01
 
 import PairExtension
 

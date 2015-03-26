@@ -1,13 +1,13 @@
-module SimLetExtension
+module LetSimExtension
 
-import SeqLetExtension
+import LetSeqExtension
 
 extension {
   context-free syntax
     Binding "|" Bindings -> Bindings
 
   inductive definitions
-    T-SimLet1:
+    T-LetSim1:
       (C |- t1 : T1) (C |- (let bs in (\x:T1. t2)) t1 : T2)
       -----------------------------------------------------
       C |- let x = t1 | bs in t2 : T2

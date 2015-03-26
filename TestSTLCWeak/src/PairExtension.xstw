@@ -12,10 +12,16 @@ extension {
     Term "." "2"          -> Term {cons("Snd")}
     "(" Term "," Term ")" -> Term {cons("Pair")}
 
+  context-free priorities
+      Term Term     -> Term >
+    { Term "." "1"  -> Term
+      Term "." "2"  -> Term } >
+      Term "+" Term -> Term
+
   inductive definitions
     T-Fst:
-      (C |- t : Pair T)
-      -----------------
+      C |- t : Pair T
+      ---------------
       C |- t.1 : T
     T-Snd:
       C |- t : Pair T
@@ -33,7 +39,7 @@ extension {
       ~~~~~~~~~~~~~~~~>
       t (\a:T.\fresh(C,a:T):T.a) }
     { C |- t : S
-      ---------------
+      ----------------
       C |- [ t.2 ] : T
       ~~~~~~~~~~~~~~~~>
       t (\a:T.\b:T.b) }
@@ -43,7 +49,3 @@ extension {
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~>
       (\fresh(C):T->T->T. (fresh(C) t1 t2)) }
 }
-
-foo = 123;
-
-bar = 1;
