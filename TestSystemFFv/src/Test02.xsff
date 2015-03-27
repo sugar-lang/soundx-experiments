@@ -1,4 +1,4 @@
-module Test2
+module Test02
 
 id = \gen0.\x:gen0. x;
 

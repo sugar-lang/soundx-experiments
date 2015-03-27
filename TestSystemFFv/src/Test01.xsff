@@ -1,4 +1,4 @@
-module Test1
+module Test01
 
 id = \X.\x:X. x;
 
