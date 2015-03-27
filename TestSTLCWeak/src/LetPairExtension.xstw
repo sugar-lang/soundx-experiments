@@ -18,9 +18,9 @@ extension {
       C |- let (x1,x2) = t1 in t2 : T2
 
   desugarings
-     // TODO use fresh here to avoid duplicate evaluation of t1
+    // TODO use fresh here to avoid duplicate evaluation of t1
     { let (x1,x2) = t1; bs in t2 ~~~>
-      let x1 = t1.1 | x2 = t1.2; bs in t2 }
+      let x1 = t1.1 | x2 = t1.2 in let bs in t2 }
     { let (x1,x2) = t1 in t2 ~~~>
       let x1 = t1.1 | x2 = t1.2 in t2 }
 }
