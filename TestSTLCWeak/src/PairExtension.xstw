@@ -37,7 +37,8 @@ extension {
       ----------------
       C |- [ t.1 ] : T
       ~~~~~~~~~~~~~~~~>
-      t (\a:T.\fresh(C,a:T):T.a) }
+      t (\a:T.\y:T.a)
+      where y = fresh(C,a:T) }
     { C |- t : S
       ----------------
       C |- [ t.2 ] : T
@@ -47,5 +48,6 @@ extension {
       ---------------------------
       C |- [ (t1,t2) ] : S
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~>
-      (\fresh(C):T->T->T. (fresh(C) t1 t2)) }
+      (\y:T->T->T. (y t1 t2))
+      where y = fresh(C) }
 }
