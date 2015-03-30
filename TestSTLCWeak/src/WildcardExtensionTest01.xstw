@@ -1,0 +1,14 @@
+module WildcardExtensionTest01;
+
+import WildcardExtension;
+
+test1 = (\_. 1) 7;
+
+test2 = (\_. 1) (\n:Nat. n);
+
+test3 = \_. 3;
+
+test4 = test3 7;
+
+// This is ill-typed and leads the type checker into a loop...
+// test5 = test3 (\n:Nat. n);

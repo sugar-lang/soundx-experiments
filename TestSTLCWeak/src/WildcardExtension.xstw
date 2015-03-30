@@ -1,0 +1,19 @@
+module WildcardExtension;
+
+extension {
+  context-free syntax
+    "\\" "_" "." Term -> Term {cons("WldAbs")}
+
+  inductive definitions
+    T-WldAbs:
+      C |- t : T2
+      -----------------------
+      C |- \ _ . t : T1 -> T2
+
+  desugarings
+    { C |- t : T2
+      ---------------------------
+      C |- [ \ _ . t ] : T1 -> T2
+      ~~~~>
+      \fresh(C):T1. t }
+}
