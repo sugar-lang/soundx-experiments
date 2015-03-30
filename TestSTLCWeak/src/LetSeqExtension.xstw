@@ -37,7 +37,7 @@ extension {
       C |- let x = t1; bs in t2 : T2
     T-LetSeq2:
       (C |- t1 : T1) (C,x:T1 |- t2 : T2)
-      ---------------------------------
+      ----------------------------------
       C |- let x = t1 in t2 : T2
 
   desugarings
