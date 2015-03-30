@@ -1,4 +1,4 @@
-module Test02
+module Test02;
 
 a = 1;
 

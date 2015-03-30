@@ -1,6 +1,6 @@
-module LetSimExtensionTest01
+module LetSimExtensionTest01;
 
-import LetSimExtension
+import LetSimExtension;
 
 f = \n:Nat. n;
 

@@ -1,4 +1,4 @@
-module LetExtension
+module LetExtension;
 
 extension {
   lexical syntax

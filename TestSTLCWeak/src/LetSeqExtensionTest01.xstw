@@ -1,5 +1,5 @@
-module LetSeqExtensionTest01
+module LetSeqExtensionTest01;
 
-import LetSeqExtension
+import LetSeqExtension;
 
 foo = let a = 1 in a + 1;

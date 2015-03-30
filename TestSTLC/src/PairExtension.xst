@@ -1,4 +1,4 @@
-module PairExtension
+module PairExtension;
 
 extension {
   context-free syntax

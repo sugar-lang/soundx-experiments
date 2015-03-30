@@ -1,7 +1,7 @@
-module LetPairExtension
+module LetPairExtension;
 
-import PairExtension
-import LetSimExtension
+import PairExtension;
+import LetSimExtension;
 
 extension {
   context-free syntax

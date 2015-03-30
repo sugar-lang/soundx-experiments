@@ -1,4 +1,4 @@
-module Test05
+module Test05;
 
 f1 = \gen0.\gen1.\a:gen0.\b:gen1. b;
 

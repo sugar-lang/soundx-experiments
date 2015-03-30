@@ -1,6 +1,6 @@
-module LetPairExtensionTest01
+module LetPairExtensionTest01;
 
-import LetPairExtension
+import LetPairExtension;
 
 test01 = let a = 1 in a;
 

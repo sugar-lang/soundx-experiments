@@ -1,4 +1,4 @@
-module Test01;
+module Test02;
 
 x = 7;
 
@@ -6,4 +6,4 @@ boo = \n:Nat. 1;
 
 id = \n:Nat. n;
 
-foo = (1 4) 2; 
+foo = id (boo + x);

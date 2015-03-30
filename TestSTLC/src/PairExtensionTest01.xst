@@ -1,6 +1,6 @@
-module PairExtensionTest01
+module PairExtensionTest01;
 
-import PairExtension
+import PairExtension;
 
 point1 = (1,2);
 

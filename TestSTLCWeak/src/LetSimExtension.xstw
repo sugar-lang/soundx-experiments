@@ -1,6 +1,6 @@
-module LetSimExtension
+module LetSimExtension;
 
-import LetSeqExtension
+import LetSeqExtension;
 
 extension {
   context-free syntax
