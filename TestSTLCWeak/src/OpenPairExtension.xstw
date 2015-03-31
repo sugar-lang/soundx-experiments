@@ -1,0 +1,28 @@
+module OpenPairExtension;
+
+import LetPairExtension;
+
+extension {
+  lexical syntax
+    "open" -> Keyword
+
+  lexical restrictions
+    "open" -/- [0-9a-zA-Z]
+
+  context-free syntax
+    "open" Term "in" Term -> Term {cons("OpenPair")}
+
+  context-free priorities
+    { Term Term             -> Term
+      Term "+" Term         -> Term } >
+      "open" Term "in" Term -> Term
+
+  inductive definitions
+    T-Open:
+      (C |- t1 : Pair T1) (C,fst:T1,snd:T1 |- t2 : T2)
+      ------------------------------------------------
+      C |- open t1 in t2 : T2
+
+  desugarings
+    { open t1 in t2 ~~~> let (fst,snd) = t1 in t2 }
+}

@@ -1,0 +1,9 @@
+module LetPairExtensionTest01;
+
+import LetPairSimExtension;
+
+p1 = (1,3);
+
+twop = (p1,p1);
+
+test = let (p,q) = twop; (a1,a2) = p; (b1,b2) = q in a1 + b1;

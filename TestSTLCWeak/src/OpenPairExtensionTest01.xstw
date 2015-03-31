@@ -1,0 +1,7 @@
+module OpenPairExtensionTest01;
+
+import OpenPairExtension;
+
+point = (1,2);
+
+sum = open point in fst + snd;
