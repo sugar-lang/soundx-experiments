@@ -1,0 +1,9 @@
+module OpenPairExtensionTest02;
+
+import OpenPairExtension;
+
+swap = \p:Pair Nat. open p in (snd,fst);
+
+point = (1,2);
+
+point1 = swap point;
