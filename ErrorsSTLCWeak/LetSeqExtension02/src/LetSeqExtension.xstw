@@ -1,0 +1,54 @@
+module LetSeqExtension;
+
+extension {
+  lexical syntax
+    "let" -> Keyword
+    "in"  -> Keyword
+
+  lexical restrictions
+    "let" "in" -/- [0-9a-zA-Z]
+
+  context-free syntax
+    "let" Bindings "in" Term -> Term {cons("Let")}
+
+  context-free syntax
+    ID "=" Term          -> Binding
+    Binding              -> Bindings
+    Binding ";" Bindings -> Bindings
+
+  context-free priorities
+    { Term Term                -> Term
+      Term "+" Term            -> Term } >
+      "let" Bindings "in" Term -> Term
+
+  lexical syntax
+    "bs" [0-9a-zA-Z]* -> MVBindings
+
+  lexical restrictions
+    MVBindings -/- [0-9a-zA-Z]
+
+  variables
+    MVBindings -> Bindings {prefer}
+
+  inductive definitions
+    T-LetSeq1:
+      (C |- t1 : T1) (C,x:T1 |- let bs in t2 : T2)
+      --------------------------------------------
+      C |- let x = t1; bs in t2 : T2
+    T-LetSeq2:
+      (C |- t1 : T1) (C,x:T1 |- t2 : T2)
+      ---------------------------------
+      C |- let x = t1 in t2 : T2
+
+  desugarings
+    { (C |- t1 : T1) (C,x:T1 |- let bs in t2 : T2)
+      --------------------------------------------
+      C |- [ let x = t1; bs in t2 ] : T2
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      (\x:T1. let bs in t2) t1 }
+    { (C |- t1 : T1) (C,x:T1 |- t2 : T)
+      ---------------------------------
+      C |- [ let x = t1 in t2 ] : T2
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      (\x:T1. t1) t2 }
+}
