@@ -1,0 +1,85 @@
+module LetSimExtension;
+
+import LetSeqExtension;
+
+// requires sx-aux
+// type checking diverges for
+// f = \n:Nat.n;
+// a = let f = 1 | g = f in g f;
+
+extension {
+  context-free syntax
+    "args" "(" SimBindings "," Term ")" -> Term {cons("LetSimArgs"), sx-aux}
+    "body" "(" SimBindings "," Term ")" -> Term {cons("LetSimBody"), sx-aux}
+
+  context-free syntax
+    "let" SimBindings "in" Term -> Term {cons("LetSim")}
+
+  context-free syntax
+    Binding     -> SimBindings
+    Binding "|" SimBindings -> SimBindings {cons("LetSimBindingsCons")}
+
+  lexical syntax
+    "sbs" [0-9a-zA-Z]* -> MVSimBindings
+
+  lexical restrictions
+    MVSimBindings -/- [0-9a-zA-Z]
+
+  variables
+    MVSimBindings -> SimBindings {prefer}
+
+  context-free priorities
+    { Term Term                   -> Term
+      Term "+" Term               -> Term } >
+      "let" SimBindings "in" Term -> Term
+
+  // Because of the condition that an X rule must be validated with
+  // a base language rule at the root of the derivation
+  // this extension requires some unfolding for the desugaring
+  // of let sbs in t and eta-expansion with a fresh variable
+  // for args(x1 = t1 | sbs, t2).
+  inductive definitions
+    T-LetSim1:
+      (C |- t1 : T1) (y = fresh(C)) (C,y:T1 |- args(sbs, body(x1 = t1 | sbs, t2) y) : T2)
+      -----------------------------------------------------------------------------------
+      C |- let x1 = t1 | sbs in t2 : T2
+    T-LetSim2:
+      (C |- t1 : T1) (C,x:T1 |- t2 : T2)
+      ----------------------------------
+      C |- body(x1 = t1, t2) : T1 -> T2
+    T-LetSim3:
+      (C |- t1 : T1) (C,x:T1 |- body(sbs, t2) : T2)
+      ---------------------------------------------
+      C |- body(x1 = t1 | sbs, t2) : T1 -> T2
+    T-LetSim4:
+      (C |- t1 : T1) (C |- t2 : T1 -> T2)
+      -----------------------------------
+      C |- args(x1 = t1, t2) : T2
+    T-LetSim5:
+      (C |- t1 : T1) (y = fresh(C)) (C,y:T1 |- args(sbs, t2 y) : T2)
+      --------------------------------------------------------------
+      C |- args(x1 = t1 | sbs, t2) : T2
+
+  desugarings
+    { let sbs in t ~~~> args(sbs, body(sbs, t)) }
+
+    { args(x1 = t1, t2) ~~~> t2 t1 }
+
+    { (C |- t1 : T1) (y = fresh(C)) (C,y:T1 |- args(sbs, t2 y) : T2)
+      --------------------------------------------------------------
+      C |- [ args(x1 = t1 | sbs, t2) ] : T2
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      (\y:T1. args(sbs, t2 y)) t1 }
+
+    { (C |- t1 : T1) (C,x:T1 |- t2 : T2)
+      -------------------------------------
+      C |- [ body(x1 = t1, t2) ] : T1 -> T2
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      \x1:T1. t2 }
+
+    { (C |- t1 : T1) (C,x:T1 |- body(sbs, t2) : T2)
+      ---------------------------------------------
+      C |- [ body(x1 = t1 | sbs, t2) ] : T1 -> T2
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      \x1:T1. body(sbs, t2) }
+}
