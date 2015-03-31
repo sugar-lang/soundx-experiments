@@ -1,4 +1,4 @@
-module LetExtension;
+module LetSeqExtension;
 
 extension {
   lexical syntax
@@ -31,11 +31,11 @@ extension {
     MVBindings -> Bindings {prefer}
 
   inductive definitions
-    T-Let1:
+    T-LetSeq1:
       (C |- t1 : T1) (C,x:T1 |- let bs in t2 : T2)
       --------------------------------------------
       C |- let x = t1; bs in t2 : T2
-    T-Let2:
+    T-LetSeq2:
       (C |- t1 : T1) (C,x:T1 |- t2 : T2)
       ---------------------------------
       C |- let x = t1 in t2 : T2
@@ -46,9 +46,5 @@ extension {
       C |- [ let x = t1; bs in t2 ] : T2
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
       (\x:T1. let bs in t2) t1 }
-    { (C |- t1 : T1) (C,x:T1 |- t2 : T2)
-      ----------------------------------
-      C |- [ let x = t1 in t2 ] : T2
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
-      (\x:T1. t2) t1 }
+    // forgotten desugaring
 }

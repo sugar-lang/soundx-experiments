@@ -1,0 +1,6 @@
+module LetSeqExtensionTest02;
+
+import LetSeqExtension;
+
+b = \n:Nat. n;
+a = let b = 1 in b + 1;

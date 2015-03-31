@@ -36,8 +36,8 @@ extension {
       --------------------------------------------
       C |- let x = t1; bs in t2 : T2
     T-LetSeq2:
-      (C |- t1 : T1) (C,x:T1 |- t2 : T2)
-      ---------------------------------
+      (C |- t1 : T1) (C|- t2 : T2)
+      ----------------------------
       C |- let x = t1 in t2 : T2
 
   desugarings
@@ -46,9 +46,14 @@ extension {
       C |- [ let x = t1; bs in t2 ] : T2
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
       (\x:T1. let bs in t2) t1 }
-    { (C |- t1 : T1) (C,x:T1 |- t2 : T)
-      ---------------------------------
+    { (C |- t1 : T1) (C |- t2 : T2)
+      ------------------------------
       C |- [ let x = t1 in t2 ] : T2
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
-      (\x:T1. t1) t2 }
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+      (\x:T1. t2) t1 }
+    // This extension is accepted due to the axioms about fresh names.
+    // Since x is not in the assumptions it can be instantiated to
+    // fresh(...) such that by Weakening C |- t2 : T2 implies C,x:T1 |- t2 : T2.
+    // But LetSeqExtensionTest02 is not type correct by these rules.
+    // Bottom line: the axiom about fresh can produce hard to detect bugs.
 }
