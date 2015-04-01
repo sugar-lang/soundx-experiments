@@ -1,0 +1,6 @@
+module BogusExtensionTest01;
+
+import LetSeqExtension;
+import BogusExtension;
+
+one = bogus (let c = a in 1);

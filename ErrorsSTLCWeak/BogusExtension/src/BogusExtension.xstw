@@ -1,0 +1,22 @@
+module BogusExtension;
+
+// This extension works because T-Bogus is classified as X
+extension {
+  lexical syntax
+    "bogus" -> Keyword
+
+  lexical restrictions
+    "bogus" -/- [0-9a-zA-Z]
+
+  context-free syntax
+    "bogus" Term -> Term {cons("Bogus")}
+
+  inductive definitions
+    T-Bogus:
+      (C,a:Nat |- t : T) (C,a:Nat->Nat |- t : T)
+      ------------------------------------------
+      C |- bogus t : Nat
+
+  desugarings
+    { bogus t ~~~> 1 }
+}
