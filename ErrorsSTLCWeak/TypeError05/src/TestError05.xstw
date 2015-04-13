@@ -1,0 +1,5 @@
+module TestError05;
+
+import PairExtension;
+
+x = (\n:Nat.n).2;
