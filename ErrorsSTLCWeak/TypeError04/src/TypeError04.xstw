@@ -1,0 +1,3 @@
+module TypeError04;
+
+x = (\n:Nat.n) (1 4);

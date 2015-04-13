@@ -1,0 +1,7 @@
+module TypeError03;
+
+inc = \n:Nat. n+1;
+
+id = \m:Nat.m;
+
+x = inc id;

@@ -1,0 +1,3 @@
+module Test04;
+
+x = (\n:Nat.n) (1 4);

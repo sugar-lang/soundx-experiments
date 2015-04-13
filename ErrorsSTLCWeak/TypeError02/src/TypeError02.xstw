@@ -1,0 +1,5 @@
+module TypeError02;
+
+inc = \n:Nat. n+1;
+
+x = inc (\m:Nat.m);
