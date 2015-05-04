@@ -1,4 +1,4 @@
-module LetSimExtension;
+module LetSimManyExtension;
 
 import LetSeqExtension;
 
