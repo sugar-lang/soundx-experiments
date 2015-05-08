@@ -1,0 +1,6 @@
+module aa.bb
+
+bogusdefs Test1 {
+	innerdef
+	innerdef
+} 
