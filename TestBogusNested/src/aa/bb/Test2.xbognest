@@ -1,0 +1,5 @@
+module aa.bb.Test2
+
+import aa.bb.Test1
+
+bogusdef
