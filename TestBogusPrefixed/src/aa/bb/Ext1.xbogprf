@@ -1,0 +1,7 @@
+module aa.bb
+
+extension Ext2 {
+	context-free syntax
+		"foo" -> Foo
+}
+ 
