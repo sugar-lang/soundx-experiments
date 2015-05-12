@@ -1,7 +1,6 @@
 module aa.bb
 
-extension Ext2 {
+extension Ext1 {
 	context-free syntax
 		"foo" -> Foo
-}
- 
+}   

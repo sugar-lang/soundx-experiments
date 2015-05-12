@@ -1,0 +1,6 @@
+module aa.bb.Ext1
+
+extension {
+	context-free syntax
+		"Foo" -> Foo
+}
