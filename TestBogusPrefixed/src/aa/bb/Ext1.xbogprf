@@ -1,4 +1,4 @@
-module aa.bb
+package aa.bb
 
 extension Ext1 {
 	context-free syntax

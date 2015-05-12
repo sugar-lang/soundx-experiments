@@ -1,4 +1,4 @@
-module aa.cc
+package aa.cc
 
 import aa.bb.Test1
 import aa.bb.Test2
