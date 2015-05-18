@@ -1,0 +1,10 @@
+package org.sugarj.fj;
+
+public class FJIterator<A> {
+    public boolean hasNext() {
+        return false;
+    }
+    public A next() {
+        return null;
+    }
+}
