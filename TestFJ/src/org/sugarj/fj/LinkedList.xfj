@@ -1,0 +1,30 @@
+package org.sugarj.fj;
+
+import org.sugarj.fj.FJIterable;
+import org.sugarj.fj.FJIterator;
+import org.sugarj.fj.ListCell;
+import org.sugarj.fj.LinkedListIterator;
+
+public class LinkedList<A> extends FJIterable<A> {
+    private ListCell<A> cell;
+    public LinkedList() {
+        cell = null;
+    }
+    //public boolean isEmpty() {
+    //    return cell == null;
+   // }
+    //public A getFirst() {
+    //    return cell.getHead();
+   // }
+    //public A removeFirst() {
+    //    A elem = getFirst();
+    //    cell = cell.getTail();
+    //    return elem;
+    //}
+    //public void addFirst(A elem) {
+    //    cell = new ListCell<A>(elem, cell);
+    //}
+    //public FJIterator<A> iterator() {
+    //    return new LinkedListIterator<A>(cell);
+    //}   
+}

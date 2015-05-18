@@ -1,0 +1,19 @@
+package org.sugarj.fj;
+
+import org.sugarj.fj.FJIterator;
+import org.sugarj.fj.ListCell;
+
+public class LinkedListIterator<A> extends FJIterator<A> {
+    private ListCell<A> cell;
+    public LinkedListIterator(ListCell<A> cell) {
+        this.cell = cell;
+    }
+    public boolean hasNext() {
+        return cell != null;
+    }
+    public A next() {
+        A elem = cell.getHead();
+        cell = cell.getTail();
+        return elem;
+    }
+}
