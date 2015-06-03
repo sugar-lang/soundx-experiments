@@ -1,0 +1,12 @@
+package org.sugarj.fj.simpletests; 
+
+public class Test01 {
+	private int a;
+	private boolean b;
+	public Test01 m1() {
+		return new Test01();
+	}
+	public int m2(int a) {
+		return a;
+	}
+}
