@@ -1,0 +1,5 @@
+package simpletests;
+
+public class ClassA<T> {
+	
+}
