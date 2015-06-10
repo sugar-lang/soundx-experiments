@@ -1,0 +1,11 @@
+package inheritance;
+
+import basics.FJInteger;
+import inheritance.SubClass;
+import inheritance.SuperClass;
+
+public class TestReturnType {
+	public SuperClass<FJInteger> m() {
+		return new SubClass();
+	}
+}

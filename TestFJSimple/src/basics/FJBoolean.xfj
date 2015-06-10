@@ -1,0 +1,17 @@
+package basics;
+
+public class FJBoolean {
+	private boolean val;
+	
+	public FJBoolean(boolean val) {
+		this.val = val;
+	}
+
+	public void setVal(boolean val) {
+		this.val = val;
+	}
+	
+	public boolean getVal() {
+		return val;
+	}
+}
