@@ -2,22 +2,21 @@ package org.sugarj.fj;
 
 import org.sugarj.fj.LinkedList;
 import org.sugarj.fj.FJIterator;
+import org.sugarj.fj.FJInteger;
 
 public class TestLinkedListIterator {
     public void main() {
-        LinkedList<Integer> list = new LinkedList<Integer>();  
-        list.addFirst(new Integer(1));
-        list.addFirst(new Integer(2));
-        list.addFirst(new Integer(3));
+        LinkedList<FJInteger> list = new LinkedList<FJInteger>();  
+        list.addFirst(new FJInteger(1));
+        list.addFirst(new FJInteger(2));
+        list.addFirst(new FJInteger(3));
         list.removeFirst();
         list.removeFirst();
         list.removeFirst();
-        println(list.isEmpty());
 
-        FJIterator<Integer> it = list.iterator();
+        FJIterator<FJInteger> it = list.iterator();
         while(it.hasNext()) {
-            Integer num = it.next();
-            println(num);
+            FJInteger num = it.next();
         }
     }
 }

@@ -1,0 +1,17 @@
+package org.sugarj.fj;
+
+public class FJInteger {
+	private int val;
+	
+	public FJInteger(int val) {
+		this.val = val;
+	}
+
+	public void setVal(int val) {
+		this.val = val;
+	}
+	
+	public int getVal() {
+		return val;
+	}
+}
