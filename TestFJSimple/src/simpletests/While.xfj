@@ -1,0 +1,10 @@
+package simpletests;
+
+public class While {
+	public void testWhile(int bound) {
+		int i = 0;
+		while(i < bound) {
+			i = i+1;
+		}
+	}
+}
