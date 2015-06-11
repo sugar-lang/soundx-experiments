@@ -1,0 +1,17 @@
+package org.sugarj.fj.extensions.tests;
+
+import org.sugarj.fj.extensions.EnhancedForStatement;
+import org.sugarj.fj.FJIterator;
+import org.sugarj.fj.FJIterable;
+import org.sugarj.fj.FJInteger;
+import org.sugarj.fj.LinkedList;
+
+public class EnhancedForStatement01 {
+	public FJInteger sum(LinkedList<FJInteger> list) {
+		int sum = 0;
+		for(FJInteger i : list) {
+			
+		}
+		return new FJInteger(sum);
+	}
+}

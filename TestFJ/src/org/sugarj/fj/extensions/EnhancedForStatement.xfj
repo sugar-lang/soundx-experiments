@@ -1,0 +1,35 @@
+package org.sugarj.fj.extensions;
+
+public extension EnhancedForStatement {
+	lexical syntax
+	  "for" -> Keyword
+
+	context-free syntax
+	  "for" "(" Type ID ":" Expr ")" Statement -> Statement
+
+    inductive definitions
+      S-EnhancedFor:
+      	typevars(CT) = X*
+      	norm(CT, X*, T) = t
+      	norm(CT, X*, FJIterator<T>) = org.sugarj.fj.FJIterator t::[]
+      	CT; Ef; El |- e : s
+      	CT.org.sugarj.fj.FJIterable = {[], iterator:[]->org.sugarj.fj.FJIterator A::[] :: [], Object, A::[]}
+      	CT |- s <: org.sugarj.fj.FJIterable t::[]
+      	it notin dom(El)
+      	//CT; Ef; El,it:org.sugarj.fj.FJIterator t::[],x:t |- stm ~ void
+      	CT; Ef; El |- stm* ~ rt
+      	-----------------------------------------
+      	CT; Ef; El |- for(T x : e) stm stm* ~ rt
+
+	desugarings
+	  { for(T x : e) stm stm* ~~~>
+	    {
+	  		FJIterator<T> it = e.iterator();
+	  		//while(it.hasNext()) {
+	  	  	//	T x = it.next();
+	  	  	//	stm
+	  		//}	
+	  	}
+	  	stm*
+	  }
+}
