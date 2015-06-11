@@ -1,0 +1,7 @@
+package inheritance;
+
+public class SubWrapper<A> extends Wrapper<A> {
+   public int one() {
+      return 1;
+   }
+}

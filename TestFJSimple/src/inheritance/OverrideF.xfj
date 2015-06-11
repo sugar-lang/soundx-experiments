@@ -1,0 +1,10 @@
+package inheritance;
+
+import inheritance.OverrideE;
+import inheritance.SubWrapper;
+
+public class OverrideF<A> extends OverrideE<A> {
+	public Wrapper<A> m() {
+		return new SubWrapper<A>();
+	}
+}

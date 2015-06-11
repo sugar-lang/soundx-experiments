@@ -1,0 +1,8 @@
+package inheritance;
+
+public class Wrapper<A> {
+   private A a;
+   public A getA() {
+       return a;
+   }
+}

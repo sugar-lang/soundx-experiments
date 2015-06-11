@@ -1,0 +1,12 @@
+package simpletests;
+
+import basics.FJInteger;
+
+public class ConArgs {
+       private int a;
+       private FJInteger i;
+       public ConArgs(int a, FJInteger i) {
+              this.a = a;
+              this.i = i;
+       }
+}

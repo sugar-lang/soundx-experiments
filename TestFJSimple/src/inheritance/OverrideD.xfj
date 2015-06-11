@@ -1,0 +1,11 @@
+package inheritance;
+
+import basics.FJInteger;
+import basics.FJBoolean;
+import inheritance.OverrideC;
+
+public class OverrideD<A> extends OverrideC<A> {
+	public FJInteger m() {
+		return new FJInteger(2);
+	}
+}
