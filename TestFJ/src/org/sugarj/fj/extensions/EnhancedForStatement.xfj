@@ -16,7 +16,7 @@ public extension EnhancedForStatement {
       	CT.org.sugarj.fj.FJIterable = {[], iterator:[]->org.sugarj.fj.FJIterator A::[] :: [], Object, A::[]}
       	CT |- s <: org.sugarj.fj.FJIterable t::[]
       	it notin dom(El)
-      	//CT; Ef; El,it:org.sugarj.fj.FJIterator t::[],x:t |- stm ~ void
+      	CT; Ef; El,it:org.sugarj.fj.FJIterator t::[],x:t |- stm ~ void
       	CT; Ef; El |- stm* ~ rt
       	-----------------------------------------
       	CT; Ef; El |- for(T x : e) stm stm* ~ rt
@@ -25,10 +25,10 @@ public extension EnhancedForStatement {
 	  { for(T x : e) stm stm* ~~~>
 	    {
 	  		FJIterator<T> it = e.iterator();
-	  		//while(it.hasNext()) {
-	  	  	//	T x = it.next();
-	  	  	//	stm
-	  		//}	
+	  		while(it.hasNext()) {
+	  	  		T x = it.next();
+	  	  		stm
+	  		}	
 	  	}
 	  	stm*
 	  }
