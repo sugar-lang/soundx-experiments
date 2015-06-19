@@ -1,0 +1,7 @@
+package simpletests;
+
+public class DeclAssign {
+	public void m(int n) {
+		int b = n;
+	}
+}
