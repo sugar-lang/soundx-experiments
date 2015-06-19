@@ -1,7 +1,13 @@
 package simpletests;
 
+import basics.FJInteger;
+import basics.FJBoolean;
+
 public class DeclAssign {
-	public void m(int n) {
+	public void m1(int n) {
 		int b = n;
+	}
+	public void m2(FJInteger n) {
+		FJInteger b = n;
 	}
 }
