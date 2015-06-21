@@ -16,7 +16,7 @@ public extension EnhancedForStatement {
       	CT; Ef; El |- e : s
       	CT.org.sugarj.fj.FJIterable = {[], iterator:[]->org.sugarj.fj.FJIterator A::[] :: [], Object, A::[]}
         CT.org.sugarj.fj.FJIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
-        s =/= org.sugarj.fj.FJIterable t::[]
+        s =/=AType org.sugarj.fj.FJIterable t::[]
       	CT |- s <: org.sugarj.fj.FJIterable t::[]
       	it notin dom(El)
         x notin dom(El,it:org.sugarj.fj.FJIterator t::[])
