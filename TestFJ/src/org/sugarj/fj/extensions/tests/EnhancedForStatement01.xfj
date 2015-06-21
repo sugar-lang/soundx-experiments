@@ -9,8 +9,9 @@ import org.sugarj.fj.LinkedList;
 public class EnhancedForStatement01 {
 	public FJInteger sum(LinkedList<FJInteger> list) {
 		int sum = 0;
-		for(FJInteger i : list) {
-			
+                FJInteger foo = new FJInteger(3);
+		for(FJInteger i : foo) {
+			sum = sum + (i.getVal());
 		}
 		return new FJInteger(sum);
 	}
