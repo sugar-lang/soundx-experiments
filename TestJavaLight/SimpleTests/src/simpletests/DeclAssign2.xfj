@@ -2,12 +2,14 @@ package simpletests;
 
 import basics.FJInteger;
 import basics.FJBoolean;
+import inheritance.Wrapper;
 
-public class DeclAssign {
+public class DeclAssign2 {
 	public void m1(int n) {
 		int b = n;
 	}
 	public void m2(FJInteger n) {
-		FJInteger b = n;
+		//Wrapper<FJBoolean> b = n;
+		FJInteger m = n;
 	}
 }

@@ -9,20 +9,29 @@ public extension EnhancedForStatement {
 
     inductive definitions
       S-EnhancedFor:
+        // "context"
       	typevars(CT) = X*
       	norm(CT, X*, T) = t
-      	normPrim(CT, X*, T) = t
+      	// normPrim(CT, X*, T) = t
       	norm(CT, X*, FJIterator<T>) = org.sugarj.fj.FJIterator t::[]
-      	CT; Ef; El |- e : s
-      	CT.org.sugarj.fj.FJIterable = {[], iterator:[]->org.sugarj.fj.FJIterator A::[] :: [], Object, A::[]}
+        CT.org.sugarj.fj.FJIterable = {[], iterator:[]->org.sugarj.fj.FJIterator A::[] :: [], Object, A::[]}
         CT.org.sugarj.fj.FJIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
+
+        // right-hand side
+        CT; Ef; El |- e : s
         s =/=AType org.sugarj.fj.FJIterable t::[]
       	CT |- s <: org.sugarj.fj.FJIterable t::[]
-      	it notin dom(El)
+
+        // no fresh names
+        it notin dom(El)
+
+        // body
         x notin dom(El,it:org.sugarj.fj.FJIterator t::[])
       	CT; Ef; El,it:org.sugarj.fj.FJIterator t::[],x:t |- stm ~ void
+
+        // subsequent statements
       	CT; Ef; El |- stm* ~ rt
-      	-----------------------------------------
+      	----------------------------------------------------------------------------------------------------
       	CT; Ef; El |- for(T x : e) stm stm* ~ rt
 
 	desugarings
