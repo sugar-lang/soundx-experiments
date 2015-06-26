@@ -1,11 +1,11 @@
 package simpletests;
 
-import basics.FJInteger;
+import javalight.lang.JLInteger;
 
 public class ConArgs {
        private int a;
-       private FJInteger i;
-       public ConArgs(int a, FJInteger i) {
+       private JLInteger i;
+       public ConArgs(int a, JLInteger i) {
               this.a = a;
               this.i = i;
        }

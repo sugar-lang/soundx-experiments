@@ -1,11 +1,11 @@
 package inheritance;
 
-import basics.FJInteger;
+import javalight.lang.JLInteger;
 import inheritance.SubClass;
 import inheritance.SuperClass;
 
 public class TestReturnType {
-	public SuperClass<FJInteger> m() {
+	public SuperClass<JLInteger> m() {
 		return new SubClass();
 	}
 }

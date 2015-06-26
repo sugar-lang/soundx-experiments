@@ -1,11 +1,11 @@
 package inheritance;
 
-import basics.FJInteger;
+import javalight.lang.JLInteger;
 import inheritance.SuperClass;
 
 public class SubClass extends SuperClass<FJInteger> {
 	public void inc(int delta) {
-		FJInteger fld = getFld();
+		JLInteger fld = getFld();
 		int old = fld.getVal();
 		fld.setVal(delta + old);
 	}

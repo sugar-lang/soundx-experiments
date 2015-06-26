@@ -1,0 +1,22 @@
+package simpletests;
+
+import javalight.lang.JLInteger;
+import javalight.util.LinkedList;
+import javalight.util.JLIterator;
+
+public class TestLinkedListIterator {
+    public void main() {
+        LinkedList<JLInteger> list = new LinkedList<JLInteger>();  
+        list.addFirst(new JLInteger(1));
+        list.addFirst(new JLInteger(2));
+        list.addFirst(new JLInteger(3));
+        list.removeFirst();
+        list.removeFirst();
+        list.removeFirst();
+
+        JLIterator<JLInteger> it = list.iterator();
+        while(it.hasNext()) {
+            JLInteger num = it.next();
+        }
+    }
+}

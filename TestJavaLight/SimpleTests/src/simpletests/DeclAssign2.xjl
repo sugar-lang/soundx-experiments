@@ -1,0 +1,15 @@
+package simpletests;
+
+import javalight.lang.JLInteger;
+// import javalight.lang.JLBoolean;
+import inheritance.Wrapper;
+
+public class DeclAssign2 {
+	public void m1(int n) {
+		int b = n;
+	}
+	public void m2(JLInteger n) {
+		// Wrapper<JLBoolean> b = n;
+		JLInteger m = n;
+	}
+}

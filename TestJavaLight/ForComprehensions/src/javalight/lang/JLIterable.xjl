@@ -1,0 +1,9 @@
+package javalight.lang;
+
+import java.util.JLIterator;
+
+public class JLIterable<A> {
+    public JLIterator<A> iterator() {
+        return null;
+    }
+}

@@ -1,9 +1,0 @@
-package org.sugarj.fj;
-
-import org.sugarj.fj.FJIterator;
-
-public class FJIterable<A> {
-    public FJIterator<A> iterator() {
-        return null;
-    }
-}

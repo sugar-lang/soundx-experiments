@@ -1,9 +1,9 @@
-package basics;
+package javalight.lang;
 
-public class FJInteger {
+public class JLInteger {
 	private int val;
 	
-	public FJInteger(int val) {
+	public JLInteger(int val) {
 		this.val = val;
 	}
 

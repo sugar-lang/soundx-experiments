@@ -1,9 +1,9 @@
-package org.sugarj.fj;
+package javalight.util;
 
-import org.sugarj.fj.FJIterator;
-import org.sugarj.fj.ListCell;
+import javalight.util.JLIterator;
+import javalight.util.ListCell;
 
-public class LinkedListIterator<A> extends FJIterator<A> {
+public class LinkedListIterator<A> extends JLIterator<A> {
     private ListCell<A> cell;
     public LinkedListIterator(ListCell<A> cell) {
         this.cell = cell;

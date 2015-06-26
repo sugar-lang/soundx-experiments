@@ -1,9 +1,0 @@
-package inheritance;
-
-import basics.FJInteger;
-
-public class OverrideC<A> {
-	public FJInteger m() {
-		return new FJInteger(1);
-	}
-}

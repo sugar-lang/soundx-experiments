@@ -1,0 +1,9 @@
+package inheritance;
+
+import javalight.lang.FJInteger;
+
+public class OverrideC<A> {
+	public JLInteger m() {
+		return new JLInteger(1);
+	}
+}

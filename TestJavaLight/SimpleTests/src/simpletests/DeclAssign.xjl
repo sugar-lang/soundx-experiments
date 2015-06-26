@@ -1,0 +1,14 @@
+package simpletests;
+
+import javalight.lang.JLInteger;
+// import javalight.lang.JLBoolean;
+
+public class DeclAssign {
+	public void m1(int n) {
+		int b = n;
+	}
+	public void m2(JLInteger n) {
+		// JLBoolean b = n;
+		JLInteger m = n;
+	}
+}

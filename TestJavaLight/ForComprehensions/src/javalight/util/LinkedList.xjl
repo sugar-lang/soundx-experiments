@@ -1,11 +1,11 @@
-package org.sugarj.fj;
+package javalight.util;
 
-import org.sugarj.fj.FJIterable;
-import org.sugarj.fj.FJIterator;
-import org.sugarj.fj.ListCell;
-import org.sugarj.fj.LinkedListIterator;
+import javalight.lang.JLIterable;
+import javalight.util.FJIterator;
+import javalight.util.ListCell;
+import javalight.util.LinkedListIterator;
 
-public class LinkedList<A> extends FJIterable<A> {
+public class LinkedList<A> extends LJIterable<A> {
     private ListCell<A> cell;
     public LinkedList() {
         cell = null;
@@ -24,7 +24,7 @@ public class LinkedList<A> extends FJIterable<A> {
     public void addFirst(A elem) {
        cell = new ListCell<A>(elem, cell);
     }
-    public FJIterator<A> iterator() {
+    public JLIterator<A> iterator() {
        return new LinkedListIterator<A>(cell);
     }
 }

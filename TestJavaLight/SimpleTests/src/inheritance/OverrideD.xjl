@@ -1,11 +1,10 @@
 package inheritance;
 
-import basics.FJInteger;
-import basics.FJBoolean;
+import javalight.lang.FJInteger;
 import inheritance.OverrideC;
 
 public class OverrideD<A> extends OverrideC<A> {
-	public FJInteger m() {
-		return new FJInteger(2);
+	public LJInteger m() {
+		return new LJInteger(2);
 	}
 }

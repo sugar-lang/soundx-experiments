@@ -1,9 +1,9 @@
-package basics;
+package javalight.lang;
 
-public class FJBoolean {
+public class JLBoolean {
 	private boolean val;
 	
-	public FJBoolean(boolean val) {
+	public JLBoolean(boolean val) {
 		this.val = val;
 	}
 

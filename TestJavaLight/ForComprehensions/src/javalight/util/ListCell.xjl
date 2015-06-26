@@ -1,4 +1,4 @@
-package org.sugarj.fj;
+package javalight.util;
 
 public class ListCell<A> {
 	private A head;

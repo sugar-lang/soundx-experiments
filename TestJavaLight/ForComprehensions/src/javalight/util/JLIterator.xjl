@@ -1,6 +1,6 @@
-package org.sugarj.fj;
+package javalight.util;
 
-public class FJIterator<A> {
+public class JLIterator<A> {
     public boolean hasNext() {
         return false;
     }

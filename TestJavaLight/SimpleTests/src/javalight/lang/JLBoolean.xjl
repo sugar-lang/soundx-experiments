@@ -1,0 +1,17 @@
+package javalight.lang;
+
+public class JLBoolean {
+	private boolean val;
+	
+	public JLBoolean(boolean val) {
+		this.val = val;
+	}
+
+	public void setVal(boolean val) {
+		this.val = val;
+	}
+	
+	public boolean getVal() {
+		return val;
+	}
+}
