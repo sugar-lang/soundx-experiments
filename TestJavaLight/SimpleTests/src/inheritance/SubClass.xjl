@@ -3,7 +3,7 @@ package inheritance;
 import javalight.lang.JLInteger;
 import inheritance.SuperClass;
 
-public class SubClass extends SuperClass<FJInteger> {
+public class SubClass extends SuperClass<JLInteger> {
 	public void inc(int delta) {
 		JLInteger fld = getFld();
 		int old = fld.getVal();

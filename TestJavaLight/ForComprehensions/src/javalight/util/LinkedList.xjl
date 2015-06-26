@@ -1,11 +1,11 @@
 package javalight.util;
 
 import javalight.lang.JLIterable;
-import javalight.util.FJIterator;
+import javalight.util.JLIterator;
 import javalight.util.ListCell;
 import javalight.util.LinkedListIterator;
 
-public class LinkedList<A> extends LJIterable<A> {
+public class LinkedList<A> extends JL#Iterable<A> {
     private ListCell<A> cell;
     public LinkedList() {
         cell = null;

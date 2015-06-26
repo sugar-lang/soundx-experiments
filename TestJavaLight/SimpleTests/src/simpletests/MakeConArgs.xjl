@@ -1,10 +1,10 @@
 package simpletests;
 
-import javalight.lang.LJInteger;
+import javalight.lang.JLInteger;
 import simpletests.ConArgs;
 
 public class MakeConArgs {
        public ConArgs m() {
-              return new ConArgs(1, new LJInteger(7));
+              return new ConArgs(1, new JLInteger(7));
        }
 }
