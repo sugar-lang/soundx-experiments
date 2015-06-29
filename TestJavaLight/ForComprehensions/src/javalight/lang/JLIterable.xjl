@@ -1,6 +1,6 @@
 package javalight.lang;
 
-import java.util.JLIterator;
+import javalight.util.JLIterator;
 
 public class JLIterable<A> {
     public JLIterator<A> iterator() {
