@@ -21,12 +21,9 @@ public extension EnhancedForStatement {
         s =/=AType javalight.lang.JLIterable t::[]
       	CT |- s <: javalight.lang.JLIterable t::[]
 
-        // no fresh names
-        it notin dom(El)
-
         // body
-        x notin dom(El,it:javalight.util.JLIterator t::[])
-      	CT; Ef; El,it:javalight.util.JLIterator t::[],x:t |- stm ~ void
+        x notin dom(El)
+      	CT; Ef; El,x:t |- stm ~ void
 
         // subsequent statements
       	CT; Ef; El |- stm* ~ rt
@@ -34,14 +31,36 @@ public extension EnhancedForStatement {
       	CT; Ef; El |- for(T x : e) stm stm* ~ rt
 
 	desugarings
-	  { for(T x : e) stm stm* ~~~>
+	  {
+	  	// "context"
+      	typevars(CT) = X*
+      	norm(CT, X*, T) = t
+      	norm(CT, X*, JLIterator<T>) = javalight.util.JLIterator t::[]
+        CT.javalight.lang.JLIterable = {[], iterator:[]->javalight.util.JLIterator A::[] :: [], Object, A::[]}
+        CT.javalight.util.JLIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
+
+        // right-hand side
+        CT; Ef; El |- e : s
+        s =/=AType javalight.lang.JLIterable t::[]
+      	CT |- s <: javalight.lang.JLIterable t::[]
+
+        // body
+        x notin dom(El)
+      	CT; Ef; El,x:t |- stm ~ void
+
+        // subsequent statements
+      	CT; Ef; El |- stm* ~ rt
+      	------------------------------------------------------------------------------------------------------
+      	CT; Ef; El |- [ for(T x : e) stm stm* ] ~ rt
+	    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
 	    {
-	  		JLIterator<T> it = e.iterator();
-	  		while(it.hasNext()) {
-	  	  		T x = it.next();
+	  		JLIterator<T> y = e.iterator();
+	  		while(y.hasNext()) {
+	  	  		T x = y.next();
 	  	  		stm
 	  		}	
 	  	}
 	  	stm*
+	  	where y =ID fresh(El,x:t)
 	  }
-}
+} 
