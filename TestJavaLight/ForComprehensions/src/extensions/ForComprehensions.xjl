@@ -1,0 +1,72 @@
+package extensions;
+
+import extensions.EnhancedForStatement;
+
+public extension ForComprehensions {
+	context-free syntax
+	  "for" "(" Generator Enumerators ")" Statement -> Statement
+
+	  ID "<-" Expr -> Generator
+	  
+	                             -> Enumerators
+	  ";" Enumerator Enumerators -> Enumerators
+	  
+	  "if" Expr -> Enumerator
+	  Generator -> Enumerator
+
+	lexical syntax
+	  "enums" ALPHANUMS -> MVEnumerators
+
+	lexical restrictions
+	  MVEnumerators -/- [a-zA-Z0-9]
+
+	variables
+	  MVEnumerators -> Enumerators {prefer}
+
+    inductive definitions
+      S-ForCompGen:
+      	typevars(CT) = X*
+      	norm(CT, X*, T) = t
+      	norm(CT, X*, JLIterator<T>) = javalight.util.JLIterator t::[]
+        CT.javalight.lang.JLIterable = {[], iterator:[]->javalight.util.JLIterator A::[] :: [], Object, A::[]}
+        CT.javalight.util.JLIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
+
+        CT; Ef; El |- e : s
+        s =/=AType javalight.lang.JLIterable t::[]
+      	CT |- s <: javalight.lang.JLIterable t::[]
+      	
+      	x notin dom(El)
+      	CT; Ef; El,x:t |- stm ~ void
+
+      	CT; Ef; El |- stm* ~ rt
+      	------------------------------------------------------------------------------------------------------
+      	CT; Ef; El |- for(x <- e) stm stm* ~ rt
+      //S-ForCompGenEnums:
+      //	---
+      //	CT; Ef; El |- for(x <- e; enums) stm stm* ~ rt
+      //S-ForCompIf:
+      //	---
+      //	CT; Ef; El |- for(if e) stm stm* ~ rt
+      //S-FormCompIfEnums:
+      //	---
+      //	CT; Ef; El |- for(if e; enums) stm stm* ~ rt
+	desugarings
+      { typevars(CT) = X*
+      	norm(CT, X*, T) = t
+      	norm(CT, X*, JLIterator<T>) = javalight.util.JLIterator t::[]
+        CT.javalight.lang.JLIterable = {[], iterator:[]->javalight.util.JLIterator A::[] :: [], Object, A::[]}
+        CT.javalight.util.JLIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
+
+        CT; Ef; El |- e : s
+        s =/=AType javalight.lang.JLIterable t::[]
+      	CT |- s <: javalight.lang.JLIterable t::[]
+      	
+      	x notin dom(El)
+      	CT; Ef; El,x:t |- stm ~ void
+
+      	CT; Ef; El |- stm* ~ rt
+        ------------------------------------------------------------------------------------------------------
+        CT; Ef; El |- [ for(x <- e) stm stm* ] ~ rt
+        ~~~>
+        for(T x : e) stm stm* } 
+}
