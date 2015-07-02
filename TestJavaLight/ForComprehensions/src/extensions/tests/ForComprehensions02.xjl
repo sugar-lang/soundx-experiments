@@ -6,7 +6,7 @@ import javalight.lang.JLInteger;
 import javalight.util.JLIterator;
 import javalight.util.LinkedList;
 
-public class ForComprehensions01 {
+public class ForComprehensions02 {
   public LinkedList<JLInteger> enumerate(int from, int to) {
     LinkedList<JLInteger> list = new LinkedList<JLInteger>();
     while(to >= from) {
@@ -16,10 +16,12 @@ public class ForComprehensions01 {
     return list;
   }
 
-  // for-comprehension with one generator
+  // for comprehension with generator and local binding
   public int sumEven(LinkedList<JLInteger> nums) {
     int result = 0;
-    for(num <- nums) result = result + (num.getVal());
+    for(num <- nums;
+        n = num.getVal())
+      result = result + n;
     return result;
   }
 
