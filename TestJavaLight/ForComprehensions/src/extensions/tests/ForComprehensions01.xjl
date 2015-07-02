@@ -7,11 +7,6 @@ import javalight.util.JLIterator;
 import javalight.util.LinkedList;
 
 public class ForComprehensions01 {
-  // public int test() {
-  //   LinkedList<JLInteger> list = enumerate(1, 10);
-  //   return sumEven(list);
-  // }
-
   public LinkedList<JLInteger> enumerate(int from, int to) {
     LinkedList<JLInteger> list = new LinkedList<JLInteger>();
     while(to >= from) {
@@ -23,11 +18,6 @@ public class ForComprehensions01 {
 
   public int sumEven(LinkedList<JLInteger> nums) {
     int result = 0;
-  //   for(num <- nums;
-  //       n = num.getVal();
-  //       if even(n)) {
-  //     result = result + n;
-  //   }
     for(num <- nums) result = result + (num.getVal());
     return result;
   }
