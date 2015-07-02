@@ -1,0 +1,52 @@
+package extensions.tests;
+
+import extensions.ForComprehensions;
+import javalight.lang.JLIterable;
+import javalight.lang.JLInteger;
+import javalight.util.JLIterator;
+import javalight.util.LinkedList;
+
+public class ForComprehensions01 {
+  // public int test() {
+  //   LinkedList<JLInteger> list = enumerate(1, 10);
+  //   return sumEven(list);
+  // }
+
+  public LinkedList<JLInteger> enumerate(int from, int to) {
+    LinkedList<JLInteger> list = new LinkedList<JLInteger>();
+    while(to >= from) {
+      list.addFirst(new JLInteger(to));
+      to = to-1;
+    }
+    return list;
+  }
+
+  public int sumEven(LinkedList<JLInteger> nums) {
+    int result = 0;
+  //   for(num <- nums;
+  //       n = num.getVal();
+  //       if even(n)) {
+  //     result = result + n;
+  //   }
+    for(num <- nums) result = result + (num.getVal());
+    return result;
+  }
+
+  public boolean even(int n) {
+  	boolean result;
+    if(n == 0)
+      result = true;
+    else
+      result = odd(n-1);
+    return result;
+  }
+
+  public boolean odd(int n) {
+  	boolean result;
+    if(n == 0)
+      result = false;
+    else
+      result = even(n-1);
+    return result;
+  }
+}
