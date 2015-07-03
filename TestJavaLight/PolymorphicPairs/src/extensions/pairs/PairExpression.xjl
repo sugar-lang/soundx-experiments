@@ -1,0 +1,31 @@
+package extensions.pair;
+
+public extension PairExpression {
+    context-free syntax
+      "(" Expr "," Expr ")" -> Expr
+      Expr ".1"             -> Expr
+      Expr ".2"             -> Expr
+
+    context-free syntax
+      "(" Type "," Type ")" -> Type
+
+    context-free syntax
+      "(" AType "," AType ")" -> AType
+
+    inductive definitions
+      NC-Pair:
+        qualify(CT, Pair) = extensions.pair.Pair
+        CT(Pair) = {...} // TODO fill in class type of Pair
+        normList(CT, X*, T1,T2) = t1::t2::[]
+        -----------------------------------------------
+        norm(CT, X*, (T1,T2)) = (t1, t2)
+
+      ST-Pair:
+        [X* |-> t*](t1::t2::[]) = s1::s2::[]
+        ---------------------------------------------
+        [X* |-> t*]((t1,t2)) = (s1,s2)
+
+    desugarings
+      { (T1,T2) ~~~> Pair<T1,T2> }
+      { (t1,t2) ~~~> extension.pair.Pair t1::t2::[] }
+}
