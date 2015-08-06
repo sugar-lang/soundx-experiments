@@ -3,10 +3,10 @@ package simpletests;
 import simpletests.ClassA;
 
 public class ClassB<E> {
-	public ClassA<E> m(ClassA<E> arg) {
-		return arg;
-	}
-	public void m2() {
-		int i = 1;
-	}
+    public ClassA<E> m(ClassA<E> arg) {
+        return arg;
+    }
+    public void m2() {
+        int i = 1;
+    }
 }

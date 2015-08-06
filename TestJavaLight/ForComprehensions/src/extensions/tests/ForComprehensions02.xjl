@@ -26,7 +26,7 @@ public class ForComprehensions02 {
   }
 
   public boolean even(int n) {
-  	boolean result;
+    boolean result;
     if(n == 0)
       result = true;
     else
@@ -35,7 +35,7 @@ public class ForComprehensions02 {
   }
 
   public boolean odd(int n) {
-  	boolean result;
+    boolean result;
     if(n == 0)
       result = false;
     else

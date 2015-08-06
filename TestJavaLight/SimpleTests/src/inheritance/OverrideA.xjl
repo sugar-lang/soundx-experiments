@@ -3,7 +3,7 @@ package inheritance;
 import javalight.lang.JLInteger;
 
 public class OverrideA {
-	public JLInteger m() {
-		return new JLInteger(1);
-	}
+    public JLInteger m() {
+        return new JLInteger(1);
+    }
 }

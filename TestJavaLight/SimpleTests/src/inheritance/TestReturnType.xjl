@@ -5,7 +5,7 @@ import inheritance.SubClass;
 import inheritance.SuperClass;
 
 public class TestReturnType {
-	public SuperClass<JLInteger> m() {
-		return new SubClass();
-	}
+    public SuperClass<JLInteger> m() {
+        return new SubClass();
+    }
 }

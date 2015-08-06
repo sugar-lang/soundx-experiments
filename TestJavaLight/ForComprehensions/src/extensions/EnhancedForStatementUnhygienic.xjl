@@ -1,47 +1,47 @@
 package extensions;
 
 public extension EnhancedForStatementUnhygienic {
-	lexical syntax
-	  "for" -> Keyword
+    lexical syntax
+      "for" -> Keyword
 
-	context-free syntax
-	  "for" "(" Type ID ":" Expr ")" Statement -> Statement
+    context-free syntax
+      "for" "(" Type ID ":" Expr ")" Statement -> Statement
 
     inductive definitions
       S-EnhancedFor:
         // "context"
-      	typevars(CT) = X*
-      	norm(CT, X*, T) = t
-      	norm(CT, X*, JLIterator<T>) = javalight.util.JLIterator t::[]
+        typevars(CT) = X*
+        norm(CT, X*, T) = t
+        norm(CT, X*, JLIterator<T>) = javalight.util.JLIterator t::[]
         CT.javalight.lang.JLIterable = {[], iterator:[]->javalight.util.JLIterator A::[] :: [], Object, A::[]}
         CT.javalight.util.JLIterator = {[], hasNext:[]->boolean :: next:[]->A :: [], Object, A::[]}
 
         // right-hand side
         CT; Ef; El |- e : s
         s =/=AType javalight.lang.JLIterable t::[]
-      	CT |- s <: javalight.lang.JLIterable t::[]
+        CT |- s <: javalight.lang.JLIterable t::[]
 
         // no fresh names
         it notin dom(El)
 
         // body
         x notin dom(El,it:javalight.util.JLIterator t::[])
-      	CT; Ef; El,it:javalight.util.JLIterator t::[],x:t |- stm ~ void
+        CT; Ef; El,it:javalight.util.JLIterator t::[],x:t |- stm ~ void
 
         // subsequent statements
-      	CT; Ef; El |- stm* ~ rt
-      	------------------------------------------------------------------------------------------------------
-      	CT; Ef; El |- for(T x : e) stm stm* ~ rt
+        CT; Ef; El |- stm* ~ rt
+        ------------------------------------------------------------------------------------------------------
+        CT; Ef; El |- for(T x : e) stm stm* ~ rt
 
-	desugarings
-	  { for(T x : e) stm stm* ~~~>
-	    {
-	  		JLIterator<T> it = e.iterator();
-	  		while(it.hasNext()) {
-	  	  		T x = it.next();
-	  	  		stm
-	  		}	
-	  	}
-	  	stm*
-	  }
+    desugarings
+      { for(T x : e) stm stm* ~~~>
+        {
+            JLIterator<T> it = e.iterator();
+            while(it.hasNext()) {
+                T x = it.next();
+                stm
+            }   
+        }
+        stm*
+      }
 }

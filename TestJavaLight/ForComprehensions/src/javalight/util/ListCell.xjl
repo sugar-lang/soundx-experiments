@@ -1,11 +1,11 @@
 package javalight.util;
 
 public class ListCell<A> {
-	private A head;
-	private ListCell<A> tail;
+    private A head;
+    private ListCell<A> tail;
     public ListCell (A head, ListCell<A> tail) {
-    	this.head = head;
-    	this.tail = tail;
+        this.head = head;
+        this.tail = tail;
     }
     public A getHead() { 
         return head;

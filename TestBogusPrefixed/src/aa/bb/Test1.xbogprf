@@ -1,6 +1,6 @@
 package aa.bb
 
 bogusdefs Test1 {
-	innerdef
-	innerdef
+    innerdef
+    innerdef
 } 

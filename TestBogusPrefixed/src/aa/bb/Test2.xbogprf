@@ -3,5 +3,5 @@ package aa.bb
 import aa.bb.Test1
 
 bogusdefs Test2 {
-	innerdef
+    innerdef
 }

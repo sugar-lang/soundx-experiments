@@ -7,11 +7,11 @@ import javalight.util.JLIterator;
 import javalight.util.LinkedList;
 
 public class EnhancedForStatement01 {
-	public JLInteger sum(LinkedList<JLInteger> list) {
-		int sum = 0;
-		for(JLInteger i : list) {
-			sum = sum + (i.getVal());
-		}
-		return new JLInteger(sum);
-	}
+    public JLInteger sum(LinkedList<JLInteger> list) {
+        int sum = 0;
+        for(JLInteger i : list) {
+            sum = sum + (i.getVal());
+        }
+        return new JLInteger(sum);
+    }
 }

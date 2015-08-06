@@ -3,7 +3,7 @@ package inheritance;
 import inheritance.Wrapper;
 
 public class OverrideE<A> {
-	public Wrapper<A> m() {
+    public Wrapper<A> m() {
             return new Wrapper<A>();
-	}
+    }
 }

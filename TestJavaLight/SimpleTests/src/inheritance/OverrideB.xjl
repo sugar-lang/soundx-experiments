@@ -4,7 +4,7 @@ import javalight.lang.JLInteger;
 import inheritance.OverrideA;
 
 public class OverrideB extends OverrideA {
-	public JLInteger m() {
-		return new JLInteger(2);
-	}
+    public JLInteger m() {
+        return new JLInteger(2);
+    }
 }

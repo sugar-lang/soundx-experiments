@@ -1,8 +1,8 @@
 package inheritance;
 
 public class SuperClass<E> {
-	private E fld;
-	public E getFld() {
-		return fld;
-	}
+    private E fld;
+    public E getFld() {
+        return fld;
+    }
 }

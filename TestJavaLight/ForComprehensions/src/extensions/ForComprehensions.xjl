@@ -3,24 +3,24 @@ package extensions;
 import extensions.EnhancedForStatement;
 
 public extension ForComprehensions {
-        context-free syntax
-          "for" "(" Enumerators ")" Statement -> Statement
+    context-free syntax
+      "for" "(" Enumerators ")" Statement -> Statement
 
-          Enumerator                 -> Enumerators
-          Enumerator ";" Enumerators -> Enumerators
-          
-          ID "<-" Expr -> Enumerator
-          "if" Expr    -> Enumerator
-          ID "=" Expr  -> Enumerator
+      Enumerator                 -> Enumerators
+      Enumerator ";" Enumerators -> Enumerators
+      
+      ID "<-" Expr -> Enumerator
+      "if" Expr    -> Enumerator
+      ID "=" Expr  -> Enumerator
 
-        lexical syntax
-          "enums" ALPHANUMS -> MVEnumerators
+    lexical syntax
+      "enums" ALPHANUMS -> MVEnumerators
 
-        lexical restrictions
-          MVEnumerators -/- [a-zA-Z0-9]
+    lexical restrictions
+      MVEnumerators -/- [a-zA-Z0-9]
 
-        variables
-          MVEnumerators -> Enumerators {prefer}
+    variables
+      MVEnumerators -> Enumerators {prefer}
 
     inductive definitions
       S-ForCompGen:

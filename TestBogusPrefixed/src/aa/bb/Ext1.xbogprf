@@ -1,6 +1,6 @@
 package aa.bb
 
 extension Ext1 {
-	context-free syntax
-		"foo" -> Foo
+    context-free syntax
+        "foo" -> Foo
 }   
