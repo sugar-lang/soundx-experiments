@@ -1,0 +1,83 @@
+module CPSExtension;
+
+extension {
+  lexical syntax
+    "k" [a-zA-Z0-9]* -> MVID
+    "R" [a-zA-Z0-9]* -> MVType
+
+  lexical syntax
+    "CPS" -> Keyword
+    "CPSVal" -> Keyword
+    "cps" -> Keyword
+
+  context-free syntax
+    "CPS" Type Type        -> Type {cons("TyCPS")}
+    "CPSVal" Type Type        -> Type {cons("TyCPSVal")}
+    "cps" Term Type        -> Term {cons("CPS")}
+
+  context-free priorities
+  { "CPS" Type Type        -> Type
+    "CPSVal" Type Type     -> Type }
+  > Type "->" Type -> Type
+
+  desugarings
+    { CPS T R ~~~> (CPSVal T R -> R) -> R }
+    { CPSVal Nat R ~~~> Nat }
+    { CPSVal (T1 -> T2) R ~~~> CPSVal T1 R -> CPS T2 R }
+
+  inductive definitions
+    T-CPS:
+      C |- t : T
+      ----------------------
+      C |- cps t R : CPS T R
+
+  inductive definitions and desugarings
+    T-CPS-Var:
+      x:T in C
+      ----------
+      C |- [cps x R] : (T -> R) -> R
+      ~~~~~~~~~>
+      \k:T->R. k x
+      where k =ID fresh(C)
+
+    T-CPS-Nat:
+      ------------
+      C |- [cps n R] : (Nat -> R) -> R
+      ~~~~~~~~~~~>
+      \k:Nat->R. k n
+      where k =ID fresh(C)
+
+    T-CPS-Abs:
+      C,x:T1 |- t : T2
+      ------------------------
+      C |- [cps (\x:T1. t) R] : T1 -> (T2 -> R) -> R
+      ~~~~~~~~~~~>
+      \k:(T1->T2->R)->R. k (\x:T1. cps t R) 
+
+    T-CPS-App:
+      (C |- t1 : T1 -> T2) (C |- t2 : T1)
+      -----------------------------------
+      C |- [cps (t1 t2) R] : (T2 -> R) -> R
+      ~~~~~~~~~~~>
+      \k:T2->R.
+        cps t1 R (\x1:T1->T2.
+          cps t2 R (\x2:T1.
+            k (x1 x2)))
+      where k =ID fresh(C)
+      where x1 =ID fresh(C,k:Nat->R)
+      where x2 =ID fresh(C,k:Nat->R,x1:Nat)      
+
+    T-CPS-Add:
+      (C |- t1 : Nat) (C |- t2 : Nat)
+      -------------------------------
+      C |- [cps (t1 + t2) R] : (Nat -> R) -> R
+      ~~~~~~~~~~~>
+      \k:Nat->R.
+        cps t1 R (\x1:Nat.
+          cps t2 R (\x2:Nat.
+            k (x1 + x2)))
+      where k =ID fresh(C)
+      where x1 =ID fresh(C,k:Nat->R)
+      where x2 =ID fresh(C,k:Nat->R,x1:Nat)      
+}
+
