@@ -38,7 +38,7 @@ extension {
       C |- [ t.1 ] : T
       ~~~~~~~~~~~~~~~~>
       t (\a:T.\y:T.a)
-      where y = fresh(C,a:T) }
+      where y =ID fresh(C,a:T) }
     { C |- t : S
       ----------------
       C |- [ t.2 ] : T
@@ -49,5 +49,6 @@ extension {
       C |- [ (t1,t2) ] : S
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~>
       (\y:T->T->T. (y t1 t2))
-      where y = fresh(C) }
+      where y =ID fresh(C) }
 }
+
