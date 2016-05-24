@@ -1,0 +1,138 @@
+module CPSExtension;
+
+extension {
+  lexical syntax
+    "k" [a-zA-Z0-9]* -> MVID
+    "R" [a-zA-Z0-9]* -> MVType
+
+  lexical syntax
+    "CPS" -> Keyword
+    "CPSVal" -> Keyword
+    "cps" -> Keyword
+
+  context-free syntax
+    "CCPS" Env Type        -> Env  {cons("EnvCPS")}
+    "(" Env ")"            -> Env {bracket}
+    "CPS" Type Type        -> Type {cons("TyCPS")}
+    "CPSVal" Type Type     -> Type {cons("TyCPSVal")}
+    "cps" Term Type        -> Term {cons("CPS")}
+
+  context-free priorities
+  { "CPS" Type Type        -> Type
+    "CPSVal" Type Type     -> Type }
+  > Type "->" Type -> Type
+
+  context-free priorities
+    "CCPS" Env Type -> Env
+  > Env "," ID ":" Type -> Env
+
+  desugarings
+    { CPS T R ~~~> (CPSVal T R -> R) -> R }
+    { CPSVal Nat R ~~~> Nat }
+    { CPSVal (T1 -> T2) R ~~~> CPSVal T1 R -> CPS T2 R }
+    { CCPS {} R ~~~> {} }
+    { CCPS (C,x:T) R ~~~> (CCPS C R),x:(CPSVal T R) }
+
+
+  inductive definitions
+    // T-CPS:
+    //   C |- t : T
+    //   ----------------------
+    //   CCPS C R |- cps t R : CPS T R
+
+    T-CPS-Var:
+      x:T in C
+      ----------
+      CCPS C R |- cps x R : CPS T R
+
+    T-CPS-Nat:
+      ------------
+      CCPS C R |- cps n R : CPS Nat R
+
+    T-CPS-Abs:
+      C,x:T1 |- t : T2
+      ------------------------------------------
+      CCPS C R |- cps (\x:T1. t) R : CPS (T1 -> T2) R
+      
+     // : ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
+
+//     T-CPS-App:
+//       (C |- t1 : T1 -> T2) (C |- t2 : T1)
+//       -----------------------------------
+//       C |- cps (t1 t2) R : CPS T2 R
+// 
+//     T-CPS-Add:
+//       (C |- t1 : Nat) (C |- t2 : Nat)
+//       -------------------------------
+//       C |- cps (t1 + t2) R : CPS Nat R
+
+  desugarings
+    { x:T in C
+      ----------
+      CCPS C R |- [cps x R] : S
+      ~~~~~~~~~>
+      \k:(CPSVal T R)->R. k x
+      where k =ID fresh(C) }
+
+    { ------------
+      CCPS C R |- [cps n R] : S
+      ~~~~~~~~~~~>
+      \k:Nat->R. k n
+      where k =ID fresh(C) }
+
+
+    { C,x:T1 |- t : T2
+      ------------------------
+      CCPS C R |- [cps (\x:T1. t) R] : S
+      ~~~~~~~~~~~>
+      \k:(CPSVal (T1->T2) R)->R.
+        k (\x:CPSVal T1 R. cps t R)
+      where k =ID fresh(C) }
+
+     // result: ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
+     // k-arg:  CPSVal T1 R -> CPS T2 R
+
+
+//     { (C |- t1 : T1 -> T2) (C |- t2 : T1)
+//       -----------------------------------
+//       C |- [cps (t1 t2) R] : CPS T2 R
+//       ~~~~~~~~~~~>
+//       \k:T2->R.
+//         cps t1 R (\x1:T1->T2.
+//           cps t2 R (\x2:T1.
+//             k (x1 x2)))
+//       where k =ID fresh(C)
+//       where x1 =ID fresh(C,k:Nat->R)
+//       where x2 =ID fresh(C,k:Nat->R,x1:Nat) }
+// 
+//     { (C |- t1 : Nat) (C |- t2 : Nat)
+//       -------------------------------
+//       C |- [cps (t1 + t2) R] : CPS Nat R
+//       ~~~~~~~~~~~>
+//       \k:Nat->R.
+//         cps t1 R (\x1:Nat.
+//           cps t2 R (\x2:Nat.
+//             k (x1 + x2)))
+//       where k =ID fresh(C)
+//       where x1 =ID fresh(C,k:Nat->R)
+//       where x2 =ID fresh(C,k:Nat->R,x1:Nat) }
+
+
+  inductive definitions
+    F-CPS:
+      x notin dom(C)
+      ---------------------
+      x notin dom(CCPS C R)
+
+    L-CPS:
+      x:T in C
+      --------------------------
+      x:(CPSVal T R) in CCPS C R
+
+    T-Abs-IH:
+      C,x:T1 |- t : T2
+      -------------------------------------------------
+      CCPS C R,x:(CPSVal T1 R) |- cps t R : CPS T2 R
+
+}
+
