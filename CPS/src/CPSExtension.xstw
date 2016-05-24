@@ -40,31 +40,29 @@ extension {
     //   ----------------------
     //   CCPS C R |- cps t R : CPS T R
 
-    T-CPS-Var:
-      x:T in C
-      ----------
-      CCPS C R |- cps x R : CPS T R
+    // T-CPS-Var:
+    //   x:T in C
+    //   ----------
+    //   CCPS C R |- cps x R : CPS T R
 
-    T-CPS-Nat:
-      ------------
-      CCPS C R |- cps n R : CPS Nat R
+    // T-CPS-Nat:
+    //   ------------
+    //   CCPS C R |- cps n R : CPS Nat R
 
-    T-CPS-Abs:
-      C,x:T1 |- t : T2
-      ------------------------------------------
-      CCPS C R |- cps (\x:T1. t) R : CPS (T1 -> T2) R
-      
-     // : ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
+    // T-CPS-Abs:
+    //   C,x:T1 |- t : T2
+    //   ------------------------------------------
+    //   CCPS C R |- cps (\x:T1. t) R : CPS (T1 -> T2) R
 
-//     T-CPS-App:
-//       (C |- t1 : T1 -> T2) (C |- t2 : T1)
-//       -----------------------------------
-//       C |- cps (t1 t2) R : CPS T2 R
-// 
+    T-CPS-App:
+      (C |- t1 : T1 -> T2) (C |- t2 : T1)
+      ------------------------------------
+      CCPS C R |- cps (t1 t2) R : CPS T2 R
+
 //     T-CPS-Add:
 //       (C |- t1 : Nat) (C |- t2 : Nat)
-//       -------------------------------
-//       C |- cps (t1 + t2) R : CPS Nat R
+//       ---------------------------------------
+//       CCPS C R |- cps (t1 + t2) R : CPS Nat R
 
   desugarings
     { x:T in C
@@ -85,29 +83,26 @@ extension {
       ------------------------
       CCPS C R |- [cps (\x:T1. t) R] : S
       ~~~~~~~~~~~>
-      \k:(CPSVal (T1->T2) R)->R.
+      \k: CPSVal (T1->T2) R -> R.
         k (\x:CPSVal T1 R. cps t R)
       where k =ID fresh(C) }
 
-     // result: ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
-     // k-arg:  CPSVal T1 R -> CPS T2 R
 
+    { (C |- t1 : T1 -> T2) (C |- t2 : T1)
+      -----------------------------------
+      CCPS C R |- [cps (t1 t2) R] : S
+      ~~~~~~~~~~~>
+      \k: CPSVal T2 R -> R.
+        cps t1 R (\x1:CPSVal (T1->T2) R.
+          cps t2 R (\x2:CPSVal T1 R.
+            k (x1 x2)))
+      where k =ID fresh(C)
+      where x1 =ID fresh(C, k:CPSVal T2 R -> R)
+      where x2 =ID fresh(C, k:CPSVal T2 R -> R, x1:CPSVal (T1->T2) R) }
 
-//     { (C |- t1 : T1 -> T2) (C |- t2 : T1)
-//       -----------------------------------
-//       C |- [cps (t1 t2) R] : CPS T2 R
-//       ~~~~~~~~~~~>
-//       \k:T2->R.
-//         cps t1 R (\x1:T1->T2.
-//           cps t2 R (\x2:T1.
-//             k (x1 x2)))
-//       where k =ID fresh(C)
-//       where x1 =ID fresh(C,k:Nat->R)
-//       where x2 =ID fresh(C,k:Nat->R,x1:Nat) }
-// 
 //     { (C |- t1 : Nat) (C |- t2 : Nat)
-//       -------------------------------
-//       C |- [cps (t1 + t2) R] : CPS Nat R
+//       ---------------------------------
+//       CCPS C R |- [cps (t1 + t2) R] : S
 //       ~~~~~~~~~~~>
 //       \k:Nat->R.
 //         cps t1 R (\x1:Nat.
@@ -127,12 +122,22 @@ extension {
     L-CPS:
       x:T in C
       --------------------------
-      x:(CPSVal T R) in CCPS C R
+      x:CPSVal T R in CCPS C R
 
-    T-Abs-IH:
-      C,x:T1 |- t : T2
-      -------------------------------------------------
-      CCPS C R, x:(CPSVal T1 R) |- cps t R : (CPSVal T2 R -> R) -> R
+    // T-Abs-IH:
+    //   C,x:T1 |- t : T2
+    //   -------------------------------------------------
+    //   CCPS C R, x:CPSVal T1 R |- cps t R : (CPSVal T2 R -> R) -> R
+
+    T-App-IH-1:
+      C |- t1 : T1 -> T2
+      ---------------------------------------------------------------------------
+      CCPS C R |- cps t1 R : ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
+
+    T-App-IH-2:
+      C |- t2 : T1
+      ----------------------------------------------
+      CCPS C R |- cps t2 R : (CPSVal T1 R -> R) -> R
 
 
 }
