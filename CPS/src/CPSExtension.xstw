@@ -132,7 +132,8 @@ extension {
     T-Abs-IH:
       C,x:T1 |- t : T2
       -------------------------------------------------
-      CCPS C R,x:(CPSVal T1 R) |- cps t R : CPS T2 R
+      CCPS C R, x:(CPSVal T1 R) |- cps t R : (CPSVal T2 R -> R) -> R
+
 
 }
 
