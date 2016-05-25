@@ -40,24 +40,24 @@ extension {
     //   ----------------------
     //   CCPS C R |- cps t R : CPS T R
 
-    // T-CPS-Var:
-    //   x:T in C
-    //   ----------
-    //   CCPS C R |- cps x R : CPS T R
+    T-CPS-Var:
+      x:T in C
+      ----------
+      CCPS C R |- cps x R : CPS T R
 
-    // T-CPS-Nat:
-    //   ------------
-    //   CCPS C R |- cps n R : CPS Nat R
+    T-CPS-Nat:
+      ------------
+      CCPS C R |- cps n R : CPS Nat R
 
-    // T-CPS-Abs:
-    //   C,x:T1 |- t : T2
-    //   ------------------------------------------
-    //   CCPS C R |- cps (\x:T1. t) R : CPS (T1 -> T2) R
+    T-CPS-Abs:
+      C,x:T1 |- t : T2
+      ------------------------------------------
+      CCPS C R |- cps (\x:T1. t) R : CPS (T1 -> T2) R
 
-    // T-CPS-App:
-    //   (C |- t1 : T1 -> T2) (C |- t2 : T1)
-    //   ------------------------------------
-    //   CCPS C R |- cps (t1 t2) R : CPS T2 R
+    T-CPS-App:
+      (C |- t1 : T1 -> T2) (C |- t2 : T1)
+      ------------------------------------
+      CCPS C R |- cps (t1 t2) R : CPS T2 R
 
     T-CPS-Add:
       (C |- t1 : Nat) (C |- t2 : Nat)
@@ -124,20 +124,20 @@ extension {
       --------------------------
       x:CPSVal T R in CCPS C R
 
-    // T-Abs-IH:
-    //   C,x:T1 |- t : T2
-    //   -------------------------------------------------
-    //   CCPS C R, x:CPSVal T1 R |- cps t R : (CPSVal T2 R -> R) -> R
+    T-Abs-IH:
+      C,x:T1 |- t : T2
+      -------------------------------------------------
+      CCPS C R, x:CPSVal T1 R |- cps t R : (CPSVal T2 R -> R) -> R
 
-    // T-App-IH-1:
-    //   C |- t1 : T1 -> T2
-    //   ---------------------------------------------------------------------------
-    //   CCPS C R |- cps t1 R : ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
+    T-App-IH-1:
+      C |- t1 : T1 -> T2
+      ---------------------------------------------------------------------------
+      CCPS C R |- cps t1 R : ((CPSVal T1 R -> (CPSVal T2 R -> R) -> R) -> R) -> R
 
-    // T-App-IH-2:
-    //   C |- t2 : T1
-    //   ----------------------------------------------
-    //   CCPS C R |- cps t2 R : (CPSVal T1 R -> R) -> R
+    T-App-IH-2:
+      C |- t2 : T1
+      ----------------------------------------------
+      CCPS C R |- cps t2 R : (CPSVal T1 R -> R) -> R
 
     T-Add-IH-1:
       C |- t1 : Nat
