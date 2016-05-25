@@ -93,12 +93,12 @@ extension {
       CCPS C R |- [cps (t1 t2) R] : S
       ~~~~~~~~~~~>
       \k: CPSVal T2 R -> R.
-        cps t1 R (\x1:CPSVal (T1->T2) R.
-          cps t2 R (\x2:CPSVal T1 R.
-            k (x1 x2)))
+        cps t1 R (\xf:CPSVal T1 R -> CPS T2 R.
+          cps t2 R (\xv:CPSVal T1 R.
+            xf xv k))
       where k =ID fresh(C)
-      where x1 =ID fresh(C, k:CPSVal T2 R -> R)
-      where x2 =ID fresh(C, k:CPSVal T2 R -> R, x1:CPSVal (T1->T2) R) }
+      where xf =ID fresh(C, k:CPSVal T2 R -> R)
+      where xv =ID fresh(C, k:CPSVal T2 R -> R, xf:CPSVal T1 R -> CPS T2 R) }
 
 //     { (C |- t1 : Nat) (C |- t2 : Nat)
 //       ---------------------------------
